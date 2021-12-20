@@ -14,7 +14,7 @@ const authCheck = (to: any, from: any, next: any) => {
   console.log("authCheck", store.isLoggedIn);
   if (store.isLoggedIn) {
     if (to.name === "login") {
-      next({ name: "Tab1" });
+      next({ name: "tab1" });
     } else {
       next();
     }
@@ -53,6 +53,7 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: "tab1",
+        name: "tab1",
         component: () => import("@/views/Tab1Page.vue"),
         beforeEnter: authCheck,
       },
