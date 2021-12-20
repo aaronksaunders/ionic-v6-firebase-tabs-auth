@@ -20,6 +20,7 @@ interface State {
   error: null;
 }
 
+
 export const useAuthStore = defineStore("authStore", {
   // convert to a function
   state: (): State => ({
@@ -33,7 +34,8 @@ export const useAuthStore = defineStore("authStore", {
   },
   actions: {
     /**
-     *
+     * listens for state changes, ie a user logging in or out
+     * and if logging in, loading the associated profile info
      * @returns
      */
     initializeAuthListener() {
@@ -46,7 +48,6 @@ export const useAuthStore = defineStore("authStore", {
             this.profile = profile;
           }
           resolve(true);
-          return true;
         });
       });
     },
@@ -74,6 +75,7 @@ export const useAuthStore = defineStore("authStore", {
       try {
         await fbSignOut();
         this.user = null;
+        this.profile = null;
         this.error = null;
         return true;
       } catch (e: any) {

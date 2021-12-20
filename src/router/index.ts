@@ -3,6 +3,12 @@ import { createRouter, createWebHistory } from "@ionic/vue-router";
 import { RouteRecordRaw } from "vue-router";
 import TabsPage from "../views/TabsPage.vue";
 
+/**
+ * 
+ * @param to 
+ * @param from 
+ * @param next 
+ */
 const authCheck = (to: any, from: any, next: any) => {
   const store = useAuthStore();
   console.log("authCheck", store.isLoggedIn);

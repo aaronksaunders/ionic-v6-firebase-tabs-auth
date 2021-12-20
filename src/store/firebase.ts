@@ -1,7 +1,15 @@
 import { initializeApp } from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
-import { getFirestore, getDoc, doc, setDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  getDoc,
+  doc,
+  setDoc,
+  getDocs,
+  collection,
+  onSnapshot,
+} from "firebase/firestore";
 import {
   getAuth,
   signOut,
@@ -140,6 +148,55 @@ export const fbGetUserProfile = async () => {
     console.log("No such document!", user?.uid);
     return null;
   }
+};
+
+/**
+ *
+ * @param {*} param0
+ */
+export const queryObjectCollection = async ({
+  collectionName,
+}: {
+  collectionName: string;
+}) => {
+  const querySnapshot = await getDocs(collection(db, collectionName));
+  const results: any[] = [];
+
+  querySnapshot.forEach((doc) => {
+    // doc.data() is never undefined for query doc snapshots
+    results.push({
+      id: doc.id,
+      ...doc.data(),
+    });
+  });
+  return results;
+};
+
+/**
+ * 
+ * @param collectionName 
+ * @param callback 
+ */
+export const fbCollectionListener = (collectionName: string, callback: any) => {
+  const unsubscribe = onSnapshot(
+    collection(db, collectionName),
+    (snapshot) => {
+      // ...
+      console.log("Listening To Collection: " + collectionName, snapshot);
+      const results: any[] = [];
+      snapshot.forEach((doc) => {
+        results.push({
+          id: doc.id,
+          ...doc.data(),
+        });
+      });
+      callback(results);
+    },
+    (error) => {
+      // ...
+      console.log("Error Listening To Collection: " + collectionName, error);
+    }
+  );
 };
 
 export { app, db, auth };
