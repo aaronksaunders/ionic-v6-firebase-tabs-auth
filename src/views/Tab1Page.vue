@@ -6,8 +6,8 @@
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true" class="ion-padding">
-      <h1>{{ authStore.user?.email }}</h1>
-      <pre>{{ JSON.stringify(imageStore?.images, null, 1) }}</pre>
+      <h1>Welcome: {{ authStore.user?.email }}</h1>
+      <!-- <pre>{{ JSON.stringify(imageStore?.images, null, 1) }}</pre> -->
       <ion-list>
         <ion-item v-for="image in imageStore?.images" :key="image.uid">
           <ion-avatar slot="start" style="width: 100px; height: 100px">
