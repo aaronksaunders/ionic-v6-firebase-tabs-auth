@@ -62,11 +62,6 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("@/views/Tab2Page.vue"),
         beforeEnter: authCheck,
       },
-      {
-        path: "tab3",
-        component: () => import("@/views/Tab3Page.vue"),
-        beforeEnter: authCheck,
-      },
     ],
   },
   // { path: "*", redirect: "/" },

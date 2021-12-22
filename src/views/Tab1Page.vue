@@ -10,7 +10,7 @@
       <!-- <pre>{{ JSON.stringify(imageStore?.images, null, 1) }}</pre> -->
       <ion-list>
         <ion-item v-for="image in imageStore?.images" :key="image.uid">
-          <ion-avatar slot="start" style="width: 100px; height: 100px">
+          <ion-avatar slot="start" style="width: 80px; height: 80px">
             <img :src="image.url" />
           </ion-avatar>
           <ion-label>
@@ -20,38 +20,30 @@
           </ion-label>
         </ion-item>
       </ion-list>
-      <ion-button @click="doLogout">LOGOUT</ion-button>
+
     </ion-content>
   </ion-page>
 </template>
 
 <script lang="ts">
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonItem, IonList, IonLabel } from '@ionic/vue';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonList, IonLabel } from '@ionic/vue';
 import { useAuthStore, useImageStore } from '@/store';
-import { useRouter } from 'vue-router'
 import { defineComponent, onMounted } from 'vue';
 
 export default defineComponent({
-  components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonButton, IonItem, IonList, IonLabel },
+  components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonItem, IonList, IonLabel },
   name: 'Tab-1',
   setup() {
     const authStore = useAuthStore();
     const imageStore = useImageStore();
-    const router = useRouter()
 
 
     onMounted(async () => {
       await imageStore.initializeCollectionListener("ImageInfo")
     })
-    /**
-     * 
-     */
-    const doLogout = async () => {
-      await authStore.logoutUser();
-      router.replace("/login");
-    }
+
     return {
-      doLogout, authStore, imageStore
+       authStore, imageStore
     }
   }
 })
