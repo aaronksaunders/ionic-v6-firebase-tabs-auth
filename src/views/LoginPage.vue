@@ -23,28 +23,47 @@
 </template>
 
 <script lang="ts">
-import { useAuthStore } from "@/store"
-import { IonLabel, IonInput, IonButton, IonItem, IonContent, IonHeader, IonTitle, IonToolbar, IonPage } from '@ionic/vue';
-import { ref } from 'vue';
+import { useAuthStore } from "@/store";
+import {
+    IonLabel,
+    IonInput,
+    IonButton,
+    IonItem,
+    IonContent,
+    IonHeader,
+    IonTitle,
+    IonToolbar,
+    IonPage,
+} from "@ionic/vue";
+import { defineComponent, ref } from "vue";
 import { useRouter } from "vue-router";
-export default {
-    name: 'LoginPage',
-    components: { IonLabel, IonInput, IonButton, IonItem, IonContent, IonHeader, IonTitle, IonToolbar, IonPage },
+export default defineComponent({
+    name: "LoginPage",
+    components: {
+        IonLabel,
+        IonInput,
+        IonButton,
+        IonItem,
+        IonContent,
+        IonHeader,
+        IonTitle,
+        IonToolbar,
+        IonPage,
+    },
     setup() {
-        const store = useAuthStore()
+        const store = useAuthStore();
         const { logInUser } = store;
-        const router = useRouter()
-        const email = ref('');
-        const password = ref('');
+        const router = useRouter();
+        const email = ref("");
+        const password = ref("");
 
         const doLogin = async () => {
             await logInUser(email.value, password.value);
             router.replace("/tabs/tab1");
-        }
-        return { email, password, doLogin, store }
-    }
-}
+        };
+        return { email, password, doLogin, store };
+    },
+});
 </script>
 
-<style lang="css" scoped>
-</style>
+<style lang="css" scoped></style>

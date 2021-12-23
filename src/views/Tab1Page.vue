@@ -20,7 +20,6 @@
           </ion-label>
         </ion-item>
       </ion-list>
-
     </ion-content>
   </ion-page>
 </template>
@@ -43,7 +42,7 @@ export default defineComponent({
     })
 
     return {
-       authStore, imageStore
+      authStore, imageStore
     }
   }
 })

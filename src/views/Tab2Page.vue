@@ -1,25 +1,29 @@
 <template>
   <ion-page>
     <ion-header>
-      <ion-toolbar> <ion-title>User Profile</ion-title> </ion-toolbar>
+      <ion-toolbar>
+        <ion-title>User Profile</ion-title>
+      </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true" class="ion-padding">
       <IonGrid style="background-color: antiquewhite; border-radius: 8px; padding: 8px">
         <IonRow>
           <IonCol>
-            <div style="font-weight: bold; font-size: x-large">
-              {{ profile.first }} {{ profile.last }}
-            </div>
+            <div
+              style="font-weight: bold; font-size: x-large; color: black;"
+            >{{ profile.first }} {{ profile.last }}</div>
           </IonCol>
         </IonRow>
         <IonRow>
           <IonCol>
-            <div style="font-weight: bold; font-size: large">{{ user?.email }}</div>
+            <div style="font-weight: bold; font-size: large; color: black;">{{ user?.email }}</div>
           </IonCol>
         </IonRow>
         <IonRow>
           <IonCol>
-          <p style="font-size: small; color: lightslategrey; font-weight: bold;">Last Login:&nbsp;{{user?.metadata?.lastSignInTime}}</p>
+            <p
+              style="font-size: small; color: lightslategrey; font-weight: bold;"
+            >Last Login:&nbsp;{{ user?.metadata?.lastSignInTime }}</p>
             <ion-button @click="doLogout">LOGOUT</ion-button>
           </IonCol>
         </IonRow>
