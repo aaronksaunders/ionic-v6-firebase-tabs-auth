@@ -33,9 +33,9 @@
 <script lang="ts">
 import { useAuthStore } from "@/store"
 import { IonLabel, IonInput, IonButton, IonItem, IonContent, IonHeader, IonTitle, IonToolbar, IonPage } from '@ionic/vue';
-import { ref } from 'vue';
+import { defineComponent, ref } from 'vue';
 import { useRouter } from "vue-router";
-export default {
+export default defineComponent({
     name: 'LoginPage',
     components: { IonLabel, IonInput, IonButton, IonItem, IonContent, IonHeader, IonTitle, IonToolbar, IonPage },
     setup() {
@@ -55,7 +55,7 @@ export default {
         }
         return { email, password, doCreateAccount, store, first, last }
     }
-}
+});
 </script>
 
 <style lang="css" scoped>
